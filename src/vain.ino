@@ -18,15 +18,20 @@
 
  */
 
- String device_code = "";
- String user_code = "";
- String access_token = "";
- String refresh_token = "";
+ String deviceCode = "";
+ String userCode = "";
+ String accessToken = "";
+ String refreshToken = "";
  int realTimeActiveUsers = 88;
  String tokenExpirationInSeconds = "";
  bool authenticated = false;
 
  void setup() {
+     Particle.subscribe("initiateGAuthResponse", parseAuthResponse, MY_DEVICES);
+     Particle.subscribe("gAuthPollResponse", attemptToAuthDevice, MY_DEVICES);
+     Particle.subscribe("hook-error/pollGAuthForAuth", attemptToAuthDeviceErrors, MY_DEVICES);
+     Particle.subscribe("realTimeActiveUsers", howManyRealTimeUsers, MY_DEVICES); // WHERE DOES THIS GO?
+
      Serial.begin(9600);
      Serial.println("Serial Output is working");
 
@@ -34,45 +39,44 @@
      //https://developers.google.com/identity/protocols/OAuth2ForDevices
 
      Particle.publish("initiateGAuth", PRIVATE);
-     Particle.subscribe("initiateGAuthResponse", parseAuthResponse, MY_DEVICES);
+
      delay(10000);
 
 
      Serial.print("Device Code: ");
-     Serial.println(device_code);
+     Serial.println(deviceCode);
 
      Serial.println("Please enter the following code at www.google.com/device - User Code: ");
-     Serial.println(user_code);
+     Serial.println(userCode);
 
-     // TO CODE: STEP 4 - Your application starts polling Google's authorization server (NEW WEBHOOK) to determine whether the user has authorized your app.
-     Particle.subscribe("gAuthPollResponse", attemptToAuthDevice, MY_DEVICES);
-     Particle.subscribe("hook-error/pollGAuthForAuth", attemptToAuthDeviceErrors, MY_DEVICES);
+     //STEP 4 - Your application starts polling Google's authorization server (NEW WEBHOOK) to determine whether the user has authorized your app.
+
 
      while (authenticated == false) {
          Serial.println("Polling Google Auth Service");
 
-         Particle.publish("pollGAuthForAuth", device_code, PRIVATE);
+         Particle.publish("pollGAuthForAuth", deviceCode, PRIVATE);
          delay(20000);
      }
 
 
      // TO CODE: STEP 6 Collect the next response to your polling request which contains the tokens your app needs to authorize requests on the user's behalf.
      Serial.print("Access Token: ");
-     Serial.println(access_token);
+     Serial.println(accessToken);
 
 
 
 
 
-     Particle.subscribe("realTimeActiveUsers", howManyRealTimeUsers, MY_DEVICES); // WHERE DOES THIS GO?
+
 
  }
 
  void loop() {
 
-     // TO CODE: After authenticating, request real time number from Google API every 30 seconds (NEW WEBHOOK)
+     // After authenticating, request amount of real time active users from Google Analytics API every 30 seconds
      if (authenticated == true) {
-         Particle.publish("getGARealTimeActiveUsers", access_token, PRIVATE);
+         Particle.publish("getGARealTimeActiveUsers", accessToken, PRIVATE);
          Serial.print("Real Time Active Users: ");
          Serial.println(realTimeActiveUsers);
 
@@ -90,12 +94,12 @@
  void parseAuthResponse(const char *event, const char *data) {
      Serial.println("Status: Received initiateGAuthResponse response");
 
-     //Split JSON payload strubg into two global variables (split is by "~")
+     //Split JSON payload string into two global variables (split is by "~")
      String str = String(data);
      char strBuffer[125] = "";
      str.toCharArray(strBuffer, 125);
-     device_code = strtok(strBuffer, "~");
-     user_code = strtok(NULL, "~");
+     deviceCode = strtok(strBuffer, "~");
+     userCode = strtok(NULL, "~");
  }
 
 
@@ -118,13 +122,13 @@
 
      char strBuffer[250] = "";
      str.toCharArray(strBuffer, 250);
-     access_token = strtok(strBuffer, "~");
+     accessToken = strtok(strBuffer, "~");
      token_type = strtok(NULL, "~");
      tokenExpirationInSeconds = strtok(NULL, "~");
-     refresh_token = strtok(NULL, "~");
+     refreshToken = strtok(NULL, "~");
 
-     Serial.print("access_token: ");
-     Serial.println(access_token);
+     Serial.print("accessToken: ");
+     Serial.println(accessToken);
 
      Serial.print("token_type: ");
      Serial.println(token_type);
@@ -132,10 +136,10 @@
      Serial.print("tokenExpirationInSeconds: ");
      Serial.println(tokenExpirationInSeconds);
 
-     Serial.print("refresh_token: ");
-     Serial.println(refresh_token);
+     Serial.print("refreshToken: ");
+     Serial.println(refreshToken);
 
-     if (access_token.length() > 5) {
+     if (accessToken.length() > 5) {
          authenticated = true;
          Serial.print("Authenticated: true");
      }
