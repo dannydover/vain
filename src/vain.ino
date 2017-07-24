@@ -30,46 +30,48 @@
      Particle.subscribe("initiateGAuthResponse", parseAuthResponse, MY_DEVICES);
      Particle.subscribe("gAuthPollResponse", attemptToAuthDevice, MY_DEVICES);
      Particle.subscribe("hook-error/pollGAuthForAuth", attemptToAuthDeviceErrors, MY_DEVICES);
-     Particle.subscribe("realTimeActiveUsers", howManyRealTimeUsers, MY_DEVICES); // WHERE DOES THIS GO?
+     Particle.subscribe("realTimeActiveUsers", howManyRealTimeUsers, MY_DEVICES);
 
      Serial.begin(9600);
      Serial.println("Serial Output is working");
 
-     //Device authenticates with Google Analytics API using following protocol:
-     //https://developers.google.com/identity/protocols/OAuth2ForDevices
+     /* Device authenticates with Google Analytics API using following protocol:
+        https://developers.google.com/identity/protocols/OAuth2ForDevices
+        The steps identified as part of this protocol (and explained on that URL) are included
+        in the code comments that follow.
+     */
 
+     //Step 1: Request device and user codes
      Particle.publish("initiateGAuth", PRIVATE);
-
      delay(10000);
 
+     //Step 2: Handle the authorization server response
+     // See function parseAuthResponse()
 
+     //Step 3: Display the user code
      Serial.print("Device Code: ");
      Serial.println(deviceCode);
 
      Serial.println("Please enter the following code at www.google.com/device - User Code: ");
      Serial.println(userCode);
 
-     //STEP 4 - Your application starts polling Google's authorization server (NEW WEBHOOK) to determine whether the user has authorized your app.
-
-
+     //Step 4 - Your application starts polling Google's authorization server to determine whether the user has authorized your app.
      while (authenticated == false) {
-         Serial.println("Polling Google Auth Service");
+         Serial.println("Polling Google authorization service");
 
          Particle.publish("pollGAuthForAuth", deviceCode, PRIVATE);
          delay(20000);
      }
 
+     //Step 5: User responds to access request
+     // User must input deviceCode in the web form located at https://www.google.com/device while logged into
+     // their applicable Google (Analytics) account.
 
-     // TO CODE: STEP 6 Collect the next response to your polling request which contains the tokens your app needs to authorize requests on the user's behalf.
+
+     //Step 6: Handle responses to polling requests
+     // See function attemptToAuthDevice()
      Serial.print("Access Token: ");
      Serial.println(accessToken);
-
-
-
-
-
-
-
  }
 
  void loop() {
@@ -86,7 +88,10 @@
      // TO CODE: Keep track of seconds passed (number of times API requested) and periodically use refresh token to request new access token
 
 
+
+
      // TO CODE: Display real-time vistors number on external display
+
 
 
  }
@@ -141,7 +146,7 @@
 
      if (accessToken.length() > 5) {
          authenticated = true;
-         Serial.print("Authenticated: true");
+         Serial.println("Authenticated: true");
      }
  }
 
@@ -154,10 +159,10 @@
 
      if (dataString.length() == 0) {
          realTimeActiveUsers = 0;
-     }
-
-     //convert data into integer
-     char carray[sizeof(dataString)];
-     dataString.toCharArray(carray, sizeof(carray));
-     realTimeActiveUsers = atoi(carray);
+     } else {
+       //convert non-zero data into integer
+       char carray[sizeof(dataString)];
+       dataString.toCharArray(carray, sizeof(carray));
+       realTimeActiveUsers = atoi(carray);
+    }
  }
