@@ -1,19 +1,16 @@
 /*
- * Project vain
+ * Project: Vain
  * Description:
  * Author: Danny Dover
  */
 
  /*  TO DO
 
- 0. Right code to refresh token after indicated expiration
- 1. Extract client_id and store as part of customer data? I don't want it stored in this code or with the generic webhook
- 2. Error handling, what happens if Google API requests don't return expected results?
- 3. Fiture out where method for subscribing to realTimeActiveUsers goes.
- 4. fix tokenExpirationInSeconds which is currently a false int/string mixup. The problem is parsing the JSON in the attemptToAuthDevice method
- 5. Find consistent naming convention for variables
- 6. Create easier to understand naming convention for methods/webhooks
- 7. Display real-time vistors number on external display
+    * Write code to refresh token after indicated expiration
+    * Extract client_id and store as part of customer data? I don't want it stored in the generic webhook
+    * Implement more robust error handling, what happens if Google API requests don't return expected results?
+    * Create easier to understand naming convention for methods/webhooks
+    * Display real-time vistors number on external display
 
 
  */
@@ -23,7 +20,7 @@
  String accessToken = "";
  String refreshToken = "";
  int realTimeActiveUsers = 88;
- String tokenExpirationInSeconds = "";
+ int tokenExpirationInSeconds = 0;
  bool authenticated = false;
 
  void setup() {
@@ -129,8 +126,10 @@
      str.toCharArray(strBuffer, 250);
      accessToken = strtok(strBuffer, "~");
      token_type = strtok(NULL, "~");
-     tokenExpirationInSeconds = strtok(NULL, "~");
+     String expiration = strtok(NULL, "~");
      refreshToken = strtok(NULL, "~");
+
+     tokenExpirationInSeconds = expiration.toInt();
 
      Serial.print("accessToken: ");
      Serial.println(accessToken);
