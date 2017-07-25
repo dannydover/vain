@@ -1,3 +1,5 @@
+#include "LiquidCrystal.h"
+
 /*
  * Project: Vain
  * Description:
@@ -6,15 +8,17 @@
 
  /*  TO DO
 
-    * Display real-time vistors number on external display
-    * Fix bug that appears to be preventing code from executing after line 176
+    * Create easier to understand naming convention for methods/webhooks
+    * Fix bug that creates 1 cycle lag between getting the user count and displaying the count
     * Fix bug of when number of users gets stuck at last value when value switches to 0
+    * Fix bug that appears to be preventing code from executing after line 176
     * Extract client_id and store as part of customer data? I don't want it stored in the generic webhook
     * Implement more robust error handling, what happens if Google API requests don't return expected results?
-    * Create easier to understand naming convention for methods/webhooks
 
 
  */
+ 
+ LiquidCrystal lcd(D0, D1, D2, D3, D4, D5);
 
  String deviceCode = "";
  String userCode = "";
@@ -55,6 +59,11 @@
 
      Serial.println("Please enter the following code at www.google.com/device - User Code: ");
      Serial.println(userCode);
+
+     lcd.begin(16,2);
+     lcd.print("www.google.com/device");
+     lcd.setCursor(0, 1);
+     lcd.print(userCode);
 
      //Step 4 - Your application starts polling Google's authorization server to determine whether the user has authorized your app.
      while (authenticated == false) {
@@ -103,9 +112,11 @@
          delay(pollingRate); //default is 30 seconds
      }
 
-     // TO CODE: Display real-time vistors number on external display
-
-
+     // Display real-time vistors number on external display
+     lcd.begin(16,2);
+     lcd.print("Real Time Users:");
+     lcd.setCursor(0, 1);
+     lcd.print(realTimeActiveUsers);
 
  }
 
