@@ -1,6 +1,6 @@
 # Vain: A Tangible Google Analytics Display
 
-Vain is a Photon (a $20 web enabled micro-controller that is similar to an Arduino) based project that displays real-time Google Analytics data on a real-world display. Since the device does not have any physical user inputs, it relies on Google’s OAuth 2.0 for Limited-Input Device protocol for authenticating Google Analytics the appropriate Google Analytics account. Webhooks via [Particle.io’s free service](https://www.particle.io) are used to authenticate the device and then repeatedly request the amount of real-time active users on a given website. This data is then displayed on an external display.
+Vain is a Photon (a $20 web enabled micro-controller that is similar to an Arduino) based project that displays real-time Google Analytics data on a real-world display. Since the device does not have any physical user input mechanisms, it relies on [Google’s OAuth 2.0 for Limited-Input Device protocol](https://developers.google.com/identity/protocols/OAuth2ForDevices) for authenticating the appropriate Google Analytics account. Webhooks via [Particle.io’s free service](https://www.particle.io) are used to authenticate the device and then repeatedly request the current amount of real-time active users on a given website. This data is then displayed on an external display.
 
 ## Required Hardware
 
@@ -14,14 +14,15 @@ Vain is a Photon (a $20 web enabled micro-controller that is similar to an Ardui
 
 
 ## A Note on Authenticating on a Limited-input Device
-This section is still being developed. [documentation for OAuth2ForDevices](https://developers.google.com/identity/protocols/OAuth2ForDevices)
+This section is still being developed. [OAuth2ForDevices](https://developers.google.com/identity/protocols/OAuth2ForDevices)
 
 
 ## Creating Your Webhooks
 
-  Webhooks are a mechanism for querying information from the web. You could request
-  data from the device itself but using webhooks decreases bandwidth usage and gives
-  you better logging and debugging capabilities than manual HTTP requests.
+  Webhooks are a mechanism for querying information from the web. You could certainly
+	make the applicable HTTP requests from the the device itself but using webhooks
+	decreases bandwidth usage and perhaps more importantly gives you better logging
+	and debugging capabilities than manual HTTP requests.
 
   ### Creating a webhook on Particle.io in order to query Real Time Active Users
 
@@ -29,13 +30,19 @@ This section is still being developed. [documentation for OAuth2ForDevices](http
 
 
 
-  Authenticating your device with Google's API requires three seperate webhooks:
+  Authenticating your device with Google's API requires three separate webhooks:
 
   ### 1. WEBHOOKNAME
 
+	Lorem
+
   ### 2. WEBHOOKNAME
 
+	Lorem
+
   ### 3. WEBHOOKNAME
+
+	Lorem
 
 
   ### A note on Mustaches
@@ -69,6 +76,7 @@ This section is still being developed. [documentation for OAuth2ForDevices](http
   ### Breadboard Diagram of a Simple LCD Display Setup
 
   ![vain - lcd breadboard](https://user-images.githubusercontent.com/136573/28605821-7bf1d534-7188-11e7-8153-0963185340b7.png)
+	
 
 
 	Common LCD pin mappings are shown below but don't blindly trust these,
