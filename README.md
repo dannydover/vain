@@ -11,6 +11,7 @@ Vain is a Photon (a $20 web enabled micro-controller that is similar to an Ardui
 * Jumper Cables ([~$6.00](https://www.sparkfun.com/products/8431))
 
 ## Getting Access to Google’s APIs and Collecting Your Credentials
+This section is still being developed.
 
 
 ## A Note on Authenticating on a Limited-input Device
@@ -19,78 +20,79 @@ This section is still being developed. [OAuth2ForDevices](https://developers.goo
 
 ## Creating Your Webhooks
 
-  Webhooks are a mechanism for querying information from the web. You could certainly
-	make the applicable HTTP requests from the the device itself but using webhooks
-	decreases bandwidth usage and perhaps more importantly gives you better logging
-	and debugging capabilities than manual HTTP requests.
+Webhooks are a mechanism for querying information from the web. You could certainly
+make the applicable HTTP requests from the the device itself but using webhooks
+decreases bandwidth usage and perhaps more importantly gives you better logging
+and debugging capabilities than manual HTTP requests.
 
-  ### Creating a webhook on Particle.io in order to query Real Time Active Users
+### Creating a webhook on Particle.io in order to query Real Time Active Users
 
-  Description. Explain JSON.
-
-
-
-  Authenticating your device with Google's API requires three separate webhooks:
-
-  ### 1. WEBHOOKNAME
-
-	Lorem
-
-  ### 2. WEBHOOKNAME
-
-	Lorem
-
-  ### 3. WEBHOOKNAME
-
-	Lorem
+This section is still being developed.
+Description. Explain JSON.
 
 
-  ### A note on Mustaches
 
-  The Photon's firmware (which is written in C++) can't natively parse JSON. While
-  we could include a JSON parsing library in our code, we are going to use a simpler
-  method in order to maintain a small file size on the micro-controller program.
+Authenticating your device with Google's API requires three separate webhooks:
 
-  To do this, we format the webhook responses using a format called Mustache. You
-  can read the [Mustache format documentation](http://mustache.github.io/) here but
-  general idea is we are going to specify the keys of the JSON data that we want
-  and then separate these pieces of datum with tildes ~ so that we can then split
-  them in our code (this is an easy way to return multiple pieces of data from our
-  webhooks)
+### 1. WEBHOOKNAME
+
+This section is still being developed.
+
+### 2. WEBHOOKNAME
+
+This section is still being developed.
+
+### 3. WEBHOOKNAME
+
+This section is still being developed.
+
+
+### A note on Mustaches
+
+The Photon's firmware (which is written in C++) can't natively parse JSON. While
+we could include a JSON parsing library in our code, we are going to use a simpler
+method in order to maintain a small file size on the micro-controller program.
+
+To do this, we format the webhook responses using a format called Mustache. You
+can read the [Mustache format documentation](http://mustache.github.io/) here but
+general idea is we are going to specify the keys of the JSON data that we want
+and then separate these pieces of datum with tildes ~ so that we can then split
+them in our code (this is an easy way to return multiple pieces of data from our
+webhooks)
 
 
 ## Flashing Your Photon with the Vain Firmware
-  Now that the webhooks are created, we need to load firmware onto the Photon that
-  calls and processes these webhooks. The firmware that you need is the very same
-  firmware that is in this repo. To use it, all you need to do is download and then
-  upload it to your Photon.
+Now that the webhooks are created, we need to load firmware onto the Photon that
+calls and processes these webhooks. The firmware that you need is the very same
+firmware that is in this repo. To use it, all you need to do is download and then
+upload it to your Photon.
 
-  web based IDE is easiest? add instructions? Clean integration with github is a bit tricky
+This section is still being developed.
+
+web based IDE is easiest? add instructions? Clean integration with github is a bit tricky
 
 
 ## Wiring Your Device
-  Now that your accounts are configured, the appropriate webhooks are setup
-  and the firmware is loaded onto your device, your last remaining step is to wire
-  up your micro-controller and display.
+Now that your accounts are configured, the appropriate webhooks are setup
+and the firmware is loaded onto your device, your last remaining step is to wire
+up your micro-controller and display.
 
-  ### Breadboard Diagram of a Simple LCD Display Setup
+### Breadboard Diagram of a Simple LCD Display Setup
 
-  ![vain - lcd breadboard](https://user-images.githubusercontent.com/136573/28605821-7bf1d534-7188-11e7-8153-0963185340b7.png)
-	
+![vain - lcd breadboard](https://user-images.githubusercontent.com/136573/28605821-7bf1d534-7188-11e7-8153-0963185340b7.png)
 
+Common LCD pin mappings are shown below but don't blindly trust these, check them
+against your device's official documentation:
 
-	Common LCD pin mappings are shown below but don't blindly trust these,
-	check this against your device's official documentation:
-
-	![common LCD pin mapping](https://user-images.githubusercontent.com/136573/28605838-953b324c-7188-11e7-8aac-433b90a65852.png)
+![common LCD pin mapping](https://user-images.githubusercontent.com/136573/28605838-953b324c-7188-11e7-8aac-433b90a65852.png)
 
 
 ## That's it!
-  You now have your very own tangible Google Analytics display. Your vanity can
-  now be known to all :-p
+You now have your very own tangible Google Analytics display. Your vanity can
+now be known to all :-p
 
-  If you have an issues or code recommendation, feel free to submit pull requests
-  or issues via Github.
+If you have an issues or code recommendation, feel free to submit pull requests
+or issues via Github.
 
 
 ## Known Issues:
