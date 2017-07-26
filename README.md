@@ -14,6 +14,8 @@ Vain is a Photon (a $20 web enabled micro-controller that is similar to an Ardui
 
 
 ## A Note on Authenticating on a Limited-input Device
+	This section is still being developed.
+	
 	[documentation for OAuth2ForDevices](https://developers.google.com/identity/protocols/OAuth2ForDevices)
 
 
@@ -58,7 +60,7 @@ Vain is a Photon (a $20 web enabled micro-controller that is similar to an Ardui
   firmware that is in this repo. To use it, all you need to do is download and then
   upload it to your Photon.
 
-  web based IDE is easiest? add instructions? Clean intergration with github is a bit tricky
+  web based IDE is easiest? add instructions? Clean integration with github is a bit tricky
 
 
 ## Wiring Your Device
@@ -67,10 +69,11 @@ Vain is a Photon (a $20 web enabled micro-controller that is similar to an Ardui
   up your micro-controller and display.
 
   ### Breadboard diagram of a simple LCD display setup
-  ![vain - lcd_bb](https://user-images.githubusercontent.com/136573/28605821-7bf1d534-7188-11e7-8153-0963185340b7.png)
+  ![vain - lcd breadboard](https://user-images.githubusercontent.com/136573/28605821-7bf1d534-7188-11e7-8153-0963185340b7.png)
 
-	Common LCD pin mappings are shown below (Although don't blindly trust this,
-	check this against your device's official documentation):
+
+	Common LCD pin mappings are shown below but don't blindly trust these,
+	check this against your device's official documentation:
 	![pin mapping](https://user-images.githubusercontent.com/136573/28605838-953b324c-7188-11e7-8aac-433b90a65852.png)
 
 
