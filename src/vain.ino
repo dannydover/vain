@@ -1,7 +1,7 @@
 #include "LiquidCrystal.h"
 
 /*
- * Project: Vain
+ * Project: Vain: A Physical Google Analytics Display
  * Description:
  * Author: Danny Dover
  */
@@ -9,15 +9,10 @@
  /*  TO DO
 
     * Create easier to understand naming convention for methods/webhooks
-    * Fix bug that creates 1 cycle lag between getting the user count and displaying the count
-    * Fix bug of when number of users gets stuck at last value when value switches to 0
-    * Fix bug that appears to be preventing code from executing after line 176
-    * Extract client_id and store as part of customer data? I don't want it stored in the generic webhook
-    * Implement more robust error handling, what happens if Google API requests don't return expected results?
-
-
+    * Extract display code to seperate function
+    
  */
- 
+
  LiquidCrystal lcd(D0, D1, D2, D3, D4, D5);
 
  String deviceCode = "";
