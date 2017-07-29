@@ -38,7 +38,7 @@ At the time of creating this project, the Google Analytics Real Time Reporting A
 
 
 ## A Note on Authenticating on a Limited-input Device
-Normally when authenticating with OAuth you simply input your credentials into the device that needs access. For better or for worse, your Vain device does not have any inputs which means that the normal method of authenticating  with OAuth is not possible. As such we must use a protocol called "OAuth 2.0 For Limited-input Device". The full documentation for [OAuth2ForDevices is here.](https://developers.google.com/identity/protocols/OAuth2ForDevices). This codebase follows this protocol and each of the required steps and the corresponding code is documented within comments within the codebase. To keep things clear though, the steps for this protocol are included below:
+Normally when authenticating with OAuth you simply input your credentials into the device that needs access. For better or for worse, your Vain device does not have any inputs which means that the normal method of authenticating  with OAuth is not possible. As such we must use a protocol called "OAuth 2.0 For Limited-input Device". The full documentation for [OAuth2ForDevices is here](https://developers.google.com/identity/protocols/OAuth2ForDevices). This codebase follows this protocol and each of the required steps and the corresponding code is documented within comments within the codebase. To keep things clear though, the steps for this protocol are included below:
 
 1. Your application sends a request to Google's authorization server that identifies the scopes that your application will request permission to access.
 2. The server responds with several pieces of information used in subsequent steps, such as a device code and a user code.
@@ -51,7 +51,7 @@ The image below illustrates this process:
 
 ![deviceflow](https://user-images.githubusercontent.com/136573/28741718-8d0be4fe-73d1-11e7-87aa-a411f817bbe7.png)
 
-([Image credit:](https://developers.google.com/identity/protocols/OAuth2ForDevices))
+([Image credit: OAuth2ForDevices](https://developers.google.com/identity/protocols/OAuth2ForDevices))
 
 
 The scope that we will be using with this project is "https://www.googleapis.com/auth/analytics.readonly".
