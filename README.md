@@ -11,7 +11,28 @@ Vain is a Photon (a $20 web enabled micro-controller that is similar to an Ardui
 * Jumper Cables ([~$6.00](https://www.sparkfun.com/products/8431))
 
 ## Getting Access to Google’s APIs and Collecting Your Credentials
-This section is still being developed.
+
+**Step 1.** Create a new project with Google API Manager:
+
+To do this, go to https://https://console.developers.google.com. Once at that URL, click the small downward facing triangle in the main navigation and then click the plus simple in order to create a new project. If you get stuck or the interface has changed, see this URL (https://support.google.com/cloud/answer/6251787) for more detailed information and up-to-date instructions on creating a new project within the Google API manager.
+![step-1](https://user-images.githubusercontent.com/136573/28741600-ce13fdb8-73ce-11e7-8efb-ac488e2ac1b3.png)
+
+**Step 2.** Enable the Google Analytics API for your project:
+
+While within your newly created project and while on the Dashboard tab, click “+Enable API” link and search for “Analytics API”.
+![step-2](https://user-images.githubusercontent.com/136573/28741604-ce1865ec-73ce-11e7-8704-5ab8f37fa563.png)
+
+**Step 3.** Create credentials for your newly enabled API access:
+
+To do this, click the “Credentials” menu item and then click “Create credentials”. Next choose the “OAuth client ID” option. If required, give your product a name to be shown to users. (If Google requires this step for your project, it will prompt you for this information). When asked to specify your Application type, select “other”, give the device a name (example, Vain Photon) and click “Create”. Store the resulting “Client ID” and “Client Secret“ in a secure location. You are going to need this information shortly.
+![step-3a](https://user-images.githubusercontent.com/136573/28741603-ce146fd2-73ce-11e7-9109-9e76c87e2e94.png)
+![step-3b](https://user-images.githubusercontent.com/136573/28741602-ce144cf0-73ce-11e7-96fa-d2023e4da784.png)
+
+**Step 4.** Request access to Google Analytics Real Time Beta API. =
+
+At the time of creating this project, the Google Analytics Real Time Reporting API was in limited beta. This meant you needed to sign up for access in addition to enabling the API on your API manager. To do this, visit this URL https://developers.google.com/analytics/devguides/reporting/realtime/v3/ and fill out the accompanying form. Depending on the Google’s policies and the current status of the Real Time Analytics API, you may or may not be required to this step. Note: The “project number” that is required on the form is located within your project “Settings” menu within your API Manager.
+![step-4a](https://user-images.githubusercontent.com/136573/28741606-ce2b8b72-73ce-11e7-95c5-26e7dc608574.png)
+![step-4b](https://user-images.githubusercontent.com/136573/28741605-ce28e98a-73ce-11e7-98a0-a234c715238c.png)
 
 
 ## A Note on Authenticating on a Limited-input Device
