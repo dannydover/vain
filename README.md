@@ -103,18 +103,24 @@ webhooks)
 ## Flashing Your Photon with the Vain Firmware
 Now that the webhooks are created, we need to load firmware onto the Photon that
 calls and processes these webhooks. The firmware that you need is the very same
-firmware that is in this repo. To use it, all you need to do is download and then
+firmware that is in this repo. To use it, all you need to do is download it and then
 upload it to your Photon.
 
-This section is still being developed.
+### Download the code from Github
+In order to upload the firmware to your Photon, you first need to download it to
+your computer. To do this, simply follow [these instructions](https://help.github.com/articles/cloning-a-repository/)
+on how to clone or download a repo from Github.
 
-web based IDE is easiest? add instructions? Clean integration with github is a bit tricky
+### Upload/flash the firmware to your Photon
+Once the codebase is on your computer, you can use either the [Particle Web IDE, which is called Build](https://docs.particle.io/guide/getting-started/build/electron/) or
+the [downloadable IDE, which is called Dev](https://docs.particle.io/guide/tools-and-features/dev/) to send the code to your device. Instructions for sending code
+(called flashing) to your Particle device [is here](https://help.github.com/articles/cloning-a-repository/).
 
 
 ## Wiring Your Device
-Now that your accounts are configured, the appropriate webhooks are setup
+Now that your accounts are configured, the appropriate webhooks are set up
 and the firmware is loaded onto your device, your last remaining step is to wire
-up your micro-controller and display.
+up your micro-controller and physical display.
 
 ### Breadboard Diagram of a Simple LCD Display Setup
 
